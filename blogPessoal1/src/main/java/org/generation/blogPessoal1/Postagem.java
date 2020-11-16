@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
 @Entity
-@Table(name = "postagem")
+@Table(name = "tb_postagem")
 public class Postagem {
 	@Id	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,9 +29,12 @@ public class Postagem {
 	@NotNull
 	@Size(min = 10, max = 500)
 	private String texto;	
-
+	
 	@Temporal(TemporalType.TIMESTAMP)
     private Date data = new java.sql.Date(System.currentTimeMillis());
+	
+	@NotNull
+	private int ano;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
@@ -76,6 +79,13 @@ public class Postagem {
 	public void setTema(Tema tema) {
 		this.tema = tema;
 	}
-	
+
+	public int getAno() {
+		return ano;
+	}
+
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
 	
 }
